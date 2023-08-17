@@ -1,6 +1,8 @@
 # edm-prompt-disabler
 Disables the annoying EDM prompt message
 
+<img width="402" alt="Screenshot_2023-08-17_at_1_05_48_PM" src="https://github.com/yuvalKooply/edm-prompt-disabler/assets/97828418/d1687f33-e902-40a4-bdca-eaff0f8ca03c">
+
 ## Installation
 Clone the project, for example via:
 
