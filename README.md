@@ -6,7 +6,9 @@ Disables the annoying EDM prompt message
 ## Installation
 Clone the project, for example via:
 
-`git clone git@github.com:yuvalKooply/edm-prompt-disabler.git /Users/yuval/Development/Apps/edm-prompt-disabler`
+```
+git clone git@github.com:yuvalKooply/edm-prompt-disabler.git /Users/yuval/Development/Apps/edm-prompt-disabler
+```
 
 Make sure your project's .gitignore file contains these lines (g-01 does):
 ```
@@ -16,13 +18,19 @@ Make sure your project's .gitignore file contains these lines (g-01 does):
 
 Create a symlink to your project's Editor/_private folder (It should be within an Editor folder and _private means it'll be ignored by git):
 ### MacOS / Linux
- `ln -s /Users/yuval/Development/Apps/edm-prompt-disabler /Users/yuval/Development/Apps/g-01/Assets/Editor/_private`
+```
+ln -s /Users/yuval/Development/Apps/edm-prompt-disabler /Users/yuval/Development/Apps/g-01/Assets/Editor/_private
+```
+
 ### Windows
 I've never tried to run it on Windows but if you want to try it should be something like this (Warning: try at your own risk!):
 1. Launch cmd *as admin* (Start -> type 'cmd', right click 'Run as administrator')
 2. cd into your g-01/Packages folder
 3. Create the symlinks, for example:
-`mklink /j %homedrive%%homepath%/Development/Apps/g-01/Assets/Editor/_private %homedrive%%homepath%/Development/Apps/edm-prompt-disabler`
+
+```
+mklink /j %homedrive%%homepath%/Development/Apps/g-01/Assets/Editor/_private %homedrive%%homepath%/Development/Apps/edm-prompt-disabler
+```
 
 Now open your project in Unity and navigate to "Assets/Editor/edm-prompt-disabler". Make sure you have the file "edm-prompt-disabler.asmdef" and open its inspector. Make sure it looks like this:
 
