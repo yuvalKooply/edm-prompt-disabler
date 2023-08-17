@@ -7,6 +7,8 @@ using UnityEngine;
 [InitializeOnLoad]
 public class EDMPromptDisabler : MonoBehaviour
 {
+    private const string Name = "EDM Prompt Disabler";
+    
     static EDMPromptDisabler()
     {
         EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
@@ -78,6 +80,7 @@ public class EDMPromptDisabler : MonoBehaviour
         }
         catch (Exception e)
         {
+            Debug.LogWarning($"{Name}: Failed to disable prompt. {e.Message}");
         }
     }
 
