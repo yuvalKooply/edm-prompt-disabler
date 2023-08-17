@@ -10,7 +10,7 @@ Create a symlink into your project's Editor/_private folder (It should be within
 ### MacOS / Linux
  `ln -s /Users/yuval/Development/Apps/edm-prompt-disabler /Users/yuval/Development/Apps/g-01/Assets/Editor/_private`
 ### Windows
-I've never tried to run it on Windows but if you want to try it should be something like this:
+I've never tried to run it on Windows but if you want to try it should be something like this (Warning: try at your own risk!):
 1. Launch cmd *as admin* (Start -> type 'cmd', right click 'Run as administrator')
 2. cd into your g-01/Packages folder
 3. Create the symlinks, for example:
