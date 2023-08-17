@@ -13,7 +13,7 @@ public class EDMPromptDisabler : MonoBehaviour
         CloseAndDisableEDMPrompt();
     }
 
-    [MenuItem("Kooply/Disable EDM Prompt")]
+    [MenuItem("Kooply/Editor/Disable EDM Prompt")]
     public static void CloseAndDisableEDMPrompt()
     {
         CloseEDMPrompt();
@@ -78,7 +78,6 @@ public class EDMPromptDisabler : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.LogError("EDM Prompt Disabler: " + e.Message);
         }
     }
 
