@@ -8,7 +8,13 @@ Clone the project, for example via:
 
 `git clone git@github.com:yuvalKooply/edm-prompt-disabler.git /Users/yuval/Development/Apps/edm-prompt-disabler`
 
-Create a symlink into your project's Editor/_private folder (It should be within an Editor folder and _private means it'll be ignored by git):
+Make sure your project's .gitignore file contains these lines (g-01 does):
+```
+**/_private/
+**/_private.meta
+```
+
+Create a symlink to your project's Editor/_private folder (It should be within an Editor folder and _private means it'll be ignored by git):
 ### MacOS / Linux
  `ln -s /Users/yuval/Development/Apps/edm-prompt-disabler /Users/yuval/Development/Apps/g-01/Assets/Editor/_private`
 ### Windows
@@ -35,9 +41,7 @@ And closes any window titled: "Enable Android Auto-resolution?"
 When:
 * You launch Unity
 * You enter/exit play mode (delayed by a few seconds)
-* Unity reloads your scripts
-
-It never showed any signs of slowdown on my Mac for months.
+* Unity reloads your scripts (delayed by a few seconds)
 
 ## Known Bugs & Issues:
 It seems to work 99% of the time but you have to make sure GvhProjectSettings.xml always have that PromptBeforeAutoResolution line in the git repo, or you'll see the message whenever Unity starts and when you switch branches.
