@@ -10,5 +10,6 @@
     "email": "hello@kooply.com",
     "url": "https://www.kooply.com"
   },
-  "documentationUrl": "https://github.com/yuvalKooply/edm-prompt-disabler"
+  "documentationUrl": "https://github.com/yuvalKooply/edm-prompt-disabler",
+  "changelogUrl": "https://github.com/yuvalKooply/edm-prompt-disabler"
 }
