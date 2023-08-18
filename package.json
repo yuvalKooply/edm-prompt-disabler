@@ -1,0 +1,13 @@
+{
+  "name": "com.kooply.edm-prompt-disabler",
+  "displayName": "EDM Prompt Disabler",
+  "version": "1.0.0",
+  "host": "hub",
+  "unity": "2020.3",
+  "description": "Disable the EDM Prompt window",
+  "author": {
+    "name": "Kooply",
+    "email": "hello@kooply.com",
+    "url": "https://www.kooply.com"
+  }
+}

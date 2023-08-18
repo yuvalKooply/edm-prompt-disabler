@@ -1,13 +1,16 @@
 using System;
 using System.Xml;
-using Cysharp.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
+using System.Threading.Tasks;
 
 [InitializeOnLoad]
 public class EDMPromptDisabler : MonoBehaviour
 {
     private const string Name = "EDM Prompt Disabler";
+    private const string EDMPromptWindowTitle = "Enable Android Auto-resolution?";
+    
+    
     
     static EDMPromptDisabler()
     {
@@ -27,7 +30,7 @@ public class EDMPromptDisabler : MonoBehaviour
         var editorWindow = Resources.FindObjectsOfTypeAll<EditorWindow>();
         foreach (var window in editorWindow)
         {
-            if (window.titleContent.text.StartsWith("Enable Android Auto-resolution?"))
+            if (window.titleContent.text.StartsWith(EDMPromptWindowTitle))
             {
                 window.Close();
                 break;
@@ -86,7 +89,7 @@ public class EDMPromptDisabler : MonoBehaviour
 
     private static async void DisableEDMPromptAfterDelay()
     {
-        await UniTask.Delay(2000);
+        await Task.Delay(2000);
         CloseAndDisableEDMPrompt();
     }
     
