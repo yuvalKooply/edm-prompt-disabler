@@ -17,7 +17,7 @@ public class EDMPromptDisabler : MonoBehaviour
         EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
         CloseAndDisableEDMPrompt();
     }
-
+    
     [MenuItem("Kooply/Editor/Disable EDM Prompt")]
     public static void CloseAndDisableEDMPrompt()
     {
@@ -87,9 +87,10 @@ public class EDMPromptDisabler : MonoBehaviour
         }
     }
 
+    
     private static async void DisableEDMPromptAfterDelay()
     {
-        await Task.Delay(2000);
+        await Task.Delay(3000);
         CloseAndDisableEDMPrompt();
     }
     
