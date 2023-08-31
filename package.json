@@ -5,6 +5,10 @@
   "host": "hub",
   "unity": "2020.3",
   "description": "Disable the EDM Prompt window",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:yuvalKooply/edm-prompt-disabler.git"
+  },
   "author": {
     "name": "Kooply",
     "email": "hello@kooply.com",
