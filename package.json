@@ -7,7 +7,7 @@
   "description": "Disable the EDM Prompt window",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:yuvalKooply/edm-prompt-disabler.git"
+    "url": "https://github.com/yuvalKooply/edm-prompt-disabler.git"
   },
   "author": {
     "name": "Kooply",
