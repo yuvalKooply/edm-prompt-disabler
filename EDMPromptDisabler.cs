@@ -100,7 +100,7 @@ public class EDMPromptDisabler : MonoBehaviour
 
     private static void OnPlayModeStateChanged(PlayModeStateChange state)
     {
-        DisableEDMPrompt();
+        DisableEDMPromptAfterDelay();
     }
     
     [UnityEditor.Callbacks.DidReloadScripts]
