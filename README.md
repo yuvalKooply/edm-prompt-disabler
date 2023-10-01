@@ -5,24 +5,6 @@ Disables the annoying EDM prompt message
 
 ## Installation
 
-You have 2 options:
-1. Using Package Manager (easy but you can't edit the code)
-2. Cloning
-
-### 1. Using Package Manager
-
-<img width="330" alt="Screenshot 2023-08-18 at 8 30 43 PM" src="https://github.com/yuvalKooply/edm-prompt-disabler/assets/97828418/62720933-647a-4e06-bb53-9586706a69aa">
-
-In Unity, open Window/Package Manager and click the + button on the top left corner. Select "Add package from git URL..." and enter:
-
-```
-git@github.com:yuvalKooply/edm-prompt-disabler.git
-```
-
-In the text field. That's it!
-
-### 2. Cloning
-
 Clone the project, for example via:
 
 ```
