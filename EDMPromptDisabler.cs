@@ -15,7 +15,7 @@ public class EDMPromptDisabler : MonoBehaviour
     static EDMPromptDisabler()
     {
         EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
-        CloseAndDisableEDMPrompt();
+        DisableEDMPromptAfterDelay();
     }
     
     [MenuItem("Kooply/Editor/Disable EDM Prompt")]
