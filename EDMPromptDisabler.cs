@@ -1,110 +1,87 @@
 using System;
-using System.Xml;
+using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
-using System.Threading.Tasks;
 
-[InitializeOnLoad]
-public class EDMPromptDisabler : MonoBehaviour
+namespace Editor._private.edm_prompt_disabler
 {
-    private const string Name = "EDM Prompt Disabler";
-    private const string EDMPromptWindowTitle = "Enable Android Auto-resolution?";
-    
-    
-    
-    static EDMPromptDisabler()
+    [InitializeOnLoad]
+    public class EdmPromptDisabler : MonoBehaviour
     {
-        EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
-        CloseAndDisableEDMPrompt();
-    }
+        private const string Name = "EDM Prompt Disabler";
+        private const string EDMPromptWindowTitle = "Enable Android Auto-resolution?";
     
-    [MenuItem("Kooply/Editor/Disable EDM Prompt")]
-    public static void CloseAndDisableEDMPrompt()
-    {
-        CloseEDMPrompt();
-        DisableEDMPrompt();
-    }
     
-    private static void CloseEDMPrompt()
-    {
-        var editorWindow = Resources.FindObjectsOfTypeAll<EditorWindow>();
-        foreach (var window in editorWindow)
+    
+        static EdmPromptDisabler()
         {
-            if (window.titleContent.text.StartsWith(EDMPromptWindowTitle))
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+            CloseAndDisableEDMPrompt();
+        }
+    
+        [MenuItem("Kooply/Editor/Disable EDM Prompt")]
+        public static void CloseAndDisableEDMPrompt()
+        {
+            CloseEDMPrompt();
+            DisableEDMPrompt();
+        }
+    
+        private static void CloseEDMPrompt()
+        {
+            var editorWindow = Resources.FindObjectsOfTypeAll<EditorWindow>();
+            foreach (var window in editorWindow)
             {
-                window.Close();
-                break;
+                if (window.titleContent.text.StartsWith(EDMPromptWindowTitle))
+                {
+                    window.Close();
+                    break;
+                }
             }
         }
-    }
     
-    private static void DisableEDMPrompt()
-    {
-        try
+        private static void DisableEDMPrompt()
         {
-            using var reader = new XmlTextReader("ProjectSettings/GvhProjectSettings.xml");
-            var doc = new XmlDocument();
-            doc.Load(reader);
-            reader.Dispose();
-
-            var promptNode =
-                doc.SelectSingleNode(
-                    "projectSettings/projectSetting[@name='GooglePlayServices.PromptBeforeAutoResolution']");
-            if (promptNode != null)
+            try
             {
-                var valueAttribute = promptNode.Attributes?["value"];
-                if (valueAttribute != null)
+                var workingDirectory = Directory.GetParent(Application.dataPath);
+                if (workingDirectory != null)
                 {
-                    valueAttribute.Value = "False";
+                    Process.Start(new ProcessStartInfo("git",
+                            "checkout HEAD~1 -- ProjectSettings/GvhProjectSettings.xml")
+                        {
+                            WorkingDirectory = workingDirectory.ToString()
+                        })?.WaitForExit();
                 }
                 else
-                {
-                    if (promptNode is XmlElement promptElement)
-                        promptElement.SetAttribute("value", "False");
-                    else
-                        throw new Exception("Failed to read GvhProjectSettings.xml file!");
-                }
+                    throw new Exception("Can't detect working directory.");
             }
-            else
+            catch (Exception e)
             {
-                var projectSettingsNode = doc.SelectSingleNode("projectSettings");
-                if (projectSettingsNode != null)
-                {
-                    var projectSettingNode = doc.CreateElement("projectSetting");
-                    projectSettingNode.SetAttribute("name", "GooglePlayServices.PromptBeforeAutoResolution");
-                    projectSettingNode.SetAttribute("value", "False");
-
-                    projectSettingsNode.AppendChild(projectSettingNode);
-                    doc.Save("ProjectSettings/GvhProjectSettings.xml");
-                }
-                else
-                    throw new Exception("Failed to patch GvhProjectSettings.xml file!");
+                UnityEngine.Debug.LogWarning($"{Name}: Failed to disable prompt. {e.Message}");
             }
         }
-        catch (Exception e)
+
+        private static async void DisableEDMPromptAfterDelay()
         {
-            Debug.LogWarning($"{Name}: Failed to disable prompt. {e.Message}");
+            await Task.Delay(3000);
+            CloseAndDisableEDMPrompt();
         }
-    }
-
-    private static async void DisableEDMPromptAfterDelay()
-    {
-        await Task.Delay(3000);
-        CloseAndDisableEDMPrompt();
-    }
     
-    // ******************************************************************************
-    // Events
-    // ******************************************************************************
+        // ******************************************************************************
+        // Events
+        // ******************************************************************************
 
-    private static void OnPlayModeStateChanged(PlayModeStateChange state)
-    {
-        DisableEDMPromptAfterDelay();
-    }
+        private static void OnPlayModeStateChanged(PlayModeStateChange state)
+        {
+            DisableEDMPromptAfterDelay();
+        }
     
-    [UnityEditor.Callbacks.DidReloadScripts]
-    private static void OnScriptsReloaded()
-    {
-        DisableEDMPromptAfterDelay();
+        [UnityEditor.Callbacks.DidReloadScripts]
+        private static void OnScriptsReloaded()
+        {
+            DisableEDMPromptAfterDelay();
+        }
     }
 }
